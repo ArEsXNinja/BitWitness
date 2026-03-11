@@ -1,0 +1,9 @@
+pefile
+requests
+yara-python
+Pillow
+fpdf2
+ssdeep
+flask
+flask-cors
+customtkinter

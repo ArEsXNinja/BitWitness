@@ -1,0 +1,122 @@
+﻿================================================================
+  BitWitness v2.0 ù Full Static Malware Analysis
+  Target : C:\Users\ROHIT\OneDrive\Desktop\BitWitness\tushar.exe
+  Size   : 1,331,584 bytes
+================================================================
+
+----------------------------------------------------------------
+  [MODULE 01] FILE INTEGRITY  ù  SHA-256
+----------------------------------------------------------------
+  Hash: da8c83eae113475945a9ab217acf0a375f690e3da0205fedf6f3b176cb9ff45b
+
+----------------------------------------------------------------
+  [MODULE 02] HEADER / SIGNATURE ANALYSIS
+----------------------------------------------------------------
+  Result: UNKNOWN/CORRUPT Header: 4D5A9000
+  Raw header: 4D 5A 90 00 03 00 00 00 04 00 00 00 FF FF 00 00
+
+----------------------------------------------------------------
+  [MODULE 04] PE STATIC ANALYSIS  ù  PESTUDIO-STYLE
+----------------------------------------------------------------
+               machine: x64 (AMD64)
+          compile_time: 2026-02-05 13:03:02 UTC
+           compile_raw: 1770296582
+           entry_point: 0x000014C0
+            image_base: 0x140000000
+             subsystem: Windows GUI
+       characteristics: EXECUTABLE, LARGE_ADDRESS_AWARE
+          num_sections: 19
+             file_size: 1331584
+               pe_type: PE32+ (64-bit)
+
+  -- SECTIONS --
+  Name         VirtSize    RawSize  Entropy Flags
+  ---------- ---------- ---------- -------- --------------------
+  .text          50,792     51,200   6.0575 
+  .data             432        512   1.4882 
+  .rdata        436,272    436,736   7.9974 PACKED?
+  .pdata          2,868      3,072   4.5497 
+  .xdata          2,368      2,560   4.0178 
+  .bss        1,699,888          0   0.0000 
+  .idata          3,688      4,096   4.1643 
+  .CRT              112        512   0.4060 
+  .tls               16        512   0.0000 
+  .rsrc         725,115    725,504   3.2727 
+  .reloc            160        512   1.8164 
+  /4              1,264      1,536   1.4724 
+  /19            45,328     45,568   6.0741 
+  /31             7,412      7,680   4.6556 
+  /45            10,034     10,240   5.4810 
+  /57             2,888      3,072   3.3001 
+  /70             1,424      1,536   4.8583 
+  /81            11,981     12,288   2.1773 
+  /92             1,920      2,048   1.4810 
+
+  -- IMPORTS (2 DLLs, 98 functions) --
+  KERNEL32.dll (60 functions)
+  msvcrt.dll (38 functions)
+
+  -- SUSPICIOUS APIs (8) --
+  [!] KERNEL32.dll -> GetProcAddress
+  [!] KERNEL32.dll -> GetTickCount
+  [!] KERNEL32.dll -> IsDebuggerPresent
+  [!] KERNEL32.dll -> OpenProcess
+  [!] KERNEL32.dll -> OutputDebugStringA
+  [!] KERNEL32.dll -> QueryPerformanceCounter
+  [!] KERNEL32.dll -> VirtualProtect
+  [!] KERNEL32.dll -> WriteProcessMemory
+
+  -- THREAT INDICATORS --
+  [HIGH] Packed/Encrypted: High entropy section(s): .rdata (possible packing/encryption)
+  [MEDIUM] Suspicious Imports: 8 suspicious API imports detected
+
+----------------------------------------------------------------
+  [MODULE 05] STRINGS EXTRACTION  ù  ASCII / UNICODE
+----------------------------------------------------------------
+  Total: 6,705 | ASCII: 8,395 | Unicode: 23
+
+  -- SUSPICIOUS STRINGS (21) --
+  Executable Reference (3 found):
+    > dll
+    > com
+    > exe
+  Windows Path (2 found):
+    > C:\crossdev\gccmaster\build-tdm64\runtime\mingw-w64-crt
+    > C:\crossdev\gccmaster\build-tdm64\gcc-seh\x86_64-w64-mingw32\libgcc
+  Crypto / Encoding (2 found):
+    > hash
+    > SHA256
+  URL (14 found):
+    > http://ocsp.digicert.com0C
+    > http://cacerts.digicert.com/DigiCertAssuredIDRootCA.crt0E
+    > http://crl3.digicert.com/DigiCertAssuredIDRootCA.crl0
+    > http://ocsp.digicert.com0A
+    > http://cacerts.digicert.com/DigiCertTrustedRootG4.crt0C
+    > http://crl3.digicert.com/DigiCertTrustedRootG4.crl0
+    > http://crl3.digicert.com/DigiCertTrustedG4RSA4096SHA256TimeStampingCA.crl0
+    > http://ocsp.digicert.com0X
+    ... and 6 more
+
+----------------------------------------------------------------
+  [MODULE 06] VIRUSTOTAL LOOKUP  ù  HASH-BASED
+----------------------------------------------------------------
+  (Only the hash is sent ù file is NEVER uploaded)
+  VERDICT      : MALICIOUS
+  Detection    : 8/76
+  Threat Label : N/A
+  File Type    : Win32 EXE
+  Reputation   : -12
+
+  -- ENGINE DETECTIONS (8) --
+  APEX                     Malicious
+  Bkav                     W64.AIDetectMalware
+  CrowdStrike              win/malicious_confidence_90% (D)
+  Cylance                  Unsafe
+  DeepInstinct             MALICIOUS
+  ESET-NOD32               Win64/Rozena.LF trojan
+  Elastic                  malicious (high confidence)
+  Symantec                 ML.Attribute.HighConfidence
+
+================================================================
+  Analysis Complete.
+================================================================
